@@ -1,0 +1,24 @@
+global {
+  srate 48000;
+  krate 2400;
+}
+
+instr tone (num) {
+  //variable declaration
+  asig a,x,y,init;
+
+  a = 2*sin(3.1415927*cpsmidi(num)/s_rate);
+
+  //initial
+  if(init == 0)
+  {
+    init = 1;
+    x = 0.5;
+  }
+
+  //computation
+  x = x - a*y;
+  y = y + a*x;
+  output(y);
+
+}
