@@ -12,15 +12,15 @@ def score start, instr
   "#{start} #{instr} #{dur.round 1} #{pch}"
 end
 
-def repeat amount
+def repeat amount, instr
   arr = []
   next_start = 0.25
   amount.times do |f|
-    arr << score(next_start, "tone")
+    arr << score(next_start, instr)
     next_start += arr[f].split[2].to_f
     next_start = next_start.round 2
   end
   arr << ending(next_start)
 end
 
-puts repeat 20
+puts repeat(20, "tone")
